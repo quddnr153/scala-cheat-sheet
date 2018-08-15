@@ -14,19 +14,29 @@ object EvaluationRules extends App {
   println(example1)
   println(example2)
 
+  def printSomethingAndGetTen(): Double = {
+    println("something")
+
+    10.0
+  }
+
   // Call by value
   def square1(x: Double): Double = {
     x * x
   }
 
-  println(square1(10.0))
+  println("Call by value")
+  println(square1(printSomethingAndGetTen()))
 
   // Call by name
   def square2(x: => Double): Double = {
-    x * x
+    val ret = x * x
+
+    ret
   }
 
-  println(square2(10.0))
+  println("Call by name")
+  println(square2(printSomethingAndGetTen()))
 
   println("Evaluation Rules")
 }
